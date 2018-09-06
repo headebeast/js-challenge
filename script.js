@@ -156,12 +156,16 @@ class Library {
 
 
     deleteBooksInBooks(startIndex, howMany = 1) {
-        this.books.findIndex(books => books.author === startIndex)
+        this.books.findIndex(books => this.books.author === startIndex)
         this.books.splice(startIndex, 1)
         console.log(this.books)
     };
 
-
+    deleteBooksInCart(startIndex, howMany = 1) {
+        this.cart.findIndex(books => this.books.author === startIndex)
+        this.cart.splice(startIndex, 1)
+        console.log(this.cart)
+    };
 
     addBooksToBeginning(x) {
         this.books.unshift(x)
@@ -170,7 +174,6 @@ class Library {
     addBooksToLast(x) {
         this.books.push(x)
     };
-
 
     addBooksByTitleToCart(x) {
         this.cart.push(this.books.find(books => books.title === x))
@@ -191,9 +194,12 @@ class Library {
         return this.cart.find(books => books.title === x)
     };
 
-    checkOut() {
+    lengthOfCart() {
+        console.log(this.cart.length);
+    }
 
-        this.cart = []
+    checkOut() {
+        this.cart = [];
         console.log(this.cart)
     }
 }
@@ -203,5 +209,7 @@ const lib = new Library()
 lib.addBooksByAuthorToCart("Albert Camus", "Paul Celan");
 lib.addBooksByAuthorToCart("Jorge Luis Borges", "Dante Alighieri");
 console.log(lib.searchBooksByAuthor("Paul Celan"));
-lib.deleteBooksInBooks("Poems")
-lib.checkOut()
+lib.deleteBooksInBooks("Poems");
+lib.deleteBooksInCart("Poems");
+lib.lengthOfCart();
+lib.checkOut();
